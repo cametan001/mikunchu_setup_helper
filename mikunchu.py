@@ -121,9 +121,10 @@ class MikunchApp(wx.Frame):
         print keyword
         print replaceString
         # ファイルをオープン
-        f = open(configPath)
-        cnf = [txt.strip().find(keyword) >= 0 and replaceString + '\n' or txt for txt in \
-               [line for line in f.readlines()]] 
+        f = open(configPath, 'r')
+        # 新しい書き込み用リストを生成
+        cnf = [txt.strip().find(keyword) >= 0 and replaceString + '\n' or txt \
+               for txt in [line for line in f.readlines()]] 
         f.close()
         # 書き込み用に再度ファイルを開く
         fw = open(configPath, "w")
